@@ -38,7 +38,7 @@ const getJSON = async () => {
 
 const executePuppeteer = async () => {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     userDataDir: downloadPath,
   });
 
