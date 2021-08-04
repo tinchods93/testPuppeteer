@@ -1,0 +1,7 @@
+# Optional npm cache
+.npm
+
+# Package directories
+node_modules/
+
+puppeteer/

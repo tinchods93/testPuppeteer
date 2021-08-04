@@ -1,6 +1,3 @@
-const { getJSON } = require('./helpers');
+const { getTodayJSON } = require('./helpers');
 
-// executePuppeteer().then((a) => console.log(a));
-
-getJSON().then((a) => console.log(a));
-// console.log(executePuppeteer());
+getTodayJSON().then((a) => console.log(a));

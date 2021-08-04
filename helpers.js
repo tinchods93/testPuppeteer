@@ -29,7 +29,7 @@ function csvToJSON(filename) {
   return resp;
 }
 
-const getJSON = async () => {
+const getTodayJSON = async () => {
   // console.log(downloadPath);
   const nombreArchivo = await executePuppeteer();
   console.log('File downloaded');
@@ -38,7 +38,7 @@ const getJSON = async () => {
 
 const executePuppeteer = async () => {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     userDataDir: downloadPath,
   });
 
@@ -56,7 +56,10 @@ const executePuppeteer = async () => {
   await page.click('#exportar', { clickCount: 1 });
 
   console.log('PUPPET WAITING LINK GENERATION');
-  await page.waitForTimeout(5000);
+  await page.waitForFunction(
+    "document.querySelector('#descargar') && document.querySelector('#descargar').style.display != 'none'"
+  );
+  console.log('NO ESPERO NI ACA');
 
   await page._client.send('Page.setDownloadBehavior', {
     behavior: 'allow',
@@ -76,4 +79,4 @@ const executePuppeteer = async () => {
   return nombreArchivo;
 };
 
-module.exports = { getJSON };
+module.exports = { getTodayJSON };
